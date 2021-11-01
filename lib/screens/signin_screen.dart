@@ -1,11 +1,13 @@
-import 'package:minimal_login_ui/screens/signin_screen.dart';
-import 'package:minimal_login_ui/widgets/black_card.dart';
-import 'package:flutter/material.dart';
-import 'package:minimal_login_ui/constants.dart';
+import 'package:minimal_login_ui/screens/reset_pass_screen.dart';
 import 'package:minimal_login_ui/widgets/login_with_google.dart';
 import 'package:minimal_login_ui/widgets/login_with_twitter_card.dart';
+import 'package:minimal_login_ui/widgets/black_card.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:minimal_login_ui/constants.dart';
+import 'package:minimal_login_ui/screens/signup_screen.dart';
 
-class SignupScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,18 +22,17 @@ class SignupScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _createAccountText(),
-                  _showSigInButton(context),
+                  _welcomeBackText(),
+                  _showSignupButton(context),
                 ],
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _userNameField(),
                   _emailField(),
                   _passwordField(),
-                  _confirmPassField(),
-                  _signupButton(),
+                  _forgotPasswordButton(context),
+                  _loginButton(),
                   _orLoginWithText(),
                   _loginWithTwitterCard(),
                   _loginWithGoogleCard()
@@ -44,9 +45,9 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _createAccountText() {
+  Widget _welcomeBackText() {
     return Text(
-      'Create Account',
+      'Welcome Back',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: 'OpenSans',
@@ -55,10 +56,10 @@ class SignupScreen extends StatelessWidget {
     );
   }
 
-  Widget _showSigInButton(BuildContext context) {
+  Widget _showSignupButton(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       Text(
-        'Already a member?',
+        'New to MyApp?',
         style: TextStyle(fontWeight: FontWeight.w400),
       ),
       SizedBox(width: 5.0),
@@ -66,12 +67,12 @@ class SignupScreen extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => LoginScreen(),
+              builder: (context) => SignupScreen(),
             ),
           );
         },
         child: Text(
-          'Sign In',
+          'Sign Up',
           style: TextStyle(
             color: Colors.black26,
             fontWeight: FontWeight.w500,
@@ -80,16 +81,6 @@ class SignupScreen extends StatelessWidget {
         ),
       )
     ]);
-  }
-
-  Widget _userNameField() {
-    return TextFormField(
-      cursorColor: Colors.black,
-      cursorHeight: 23,
-      decoration: kTextFormFieldDecoration.copyWith(
-        labelText: 'YOUR NAME',
-      ),
-    );
   }
 
   Widget _emailField() {
@@ -106,26 +97,41 @@ class SignupScreen extends StatelessWidget {
       cursorColor: Colors.black,
       cursorHeight: 23,
       obscureText: true,
-      decoration: kTextFormFieldDecoration.copyWith(labelText: 'PASSWORD'),
-    );
-  }
-
-  Widget _confirmPassField() {
-    return TextFormField(
-      cursorColor: Colors.black,
-      cursorHeight: 23,
-      obscureText: true,
-      decoration:
-          kTextFormFieldDecoration.copyWith(labelText: 'CONFIRM PASSWORD'),
-    );
-  }
-
-  Widget _signupButton() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 10),
-      child: BlackCard(
-        text: 'Sign Up',
+      decoration: kTextFormFieldDecoration.copyWith(
+        labelText: 'PASSWORD',
       ),
+    );
+  }
+
+  Widget _forgotPasswordButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 5),
+      child: GestureDetector(
+        onTap: () => {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ResetPassScreen()),
+          )
+        },
+        child: Container(
+          child: InkWell(
+            child: Text(
+              'Forgot Password',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 12.0,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _loginButton() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 5),
+      child: BlackCard(text: 'Sign In'),
     );
   }
 
@@ -144,6 +150,9 @@ class SignupScreen extends StatelessWidget {
   }
 
   Widget _orLoginWithText() {
-    return Text('Or sign in with:');
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Text('Or sign in with:'),
+    );
   }
 }

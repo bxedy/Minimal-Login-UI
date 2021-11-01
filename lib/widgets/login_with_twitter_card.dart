@@ -11,24 +11,18 @@ class TwitterCard extends StatelessWidget {
           border: Border.all(
               color: Colors.black, style: BorderStyle.solid, width: 1.0),
           color: Colors.transparent,
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Center(
-              child: Container(
-                child: Image.asset('assets/images/black-twitter.jpg'),
-                height: 30,
-              ),
+            Container(
+              child: Image.asset('assets/images/twitter-logo.png'),
+              height: 18,
             ),
             SizedBox(width: 10.0),
-            Center(
-              child: Text(
-                'Log in with Twitter',
-                style: TextStyle(fontFamily: 'Trueno'),
-              ),
-            ),
+            Text('Log in with Twitter',
+                style: TextStyle(fontWeight: FontWeight.w400)),
           ],
         ),
       ),

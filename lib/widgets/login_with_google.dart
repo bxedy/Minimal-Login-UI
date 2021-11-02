@@ -23,7 +23,7 @@ class GoogleCard extends StatelessWidget {
             SizedBox(
               width: 10.0,
             ),
-            Text('Log in with Google',
+            Text('Sign in with Google',
                 style: TextStyle(fontWeight: FontWeight.w400)),
           ],
         ),

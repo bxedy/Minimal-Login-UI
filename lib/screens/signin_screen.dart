@@ -106,23 +106,21 @@ class LoginScreen extends StatelessWidget {
   Widget _forgotPasswordButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 5),
-      child: GestureDetector(
-        onTap: () => {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ResetPassScreen()),
-          )
-        },
-        child: Container(
-          child: InkWell(
-            child: Text(
-              'Forgot Password',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12.0,
-                decoration: TextDecoration.underline,
-              ),
+      child: Container(
+        child: InkWell(
+          child: Text(
+            'Forgot Password',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 12.0,
+              decoration: TextDecoration.underline,
             ),
           ),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => ResetPassScreen()),
+            );
+          },
         ),
       ),
     );

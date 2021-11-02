@@ -21,7 +21,7 @@ class TwitterCard extends StatelessWidget {
               height: 18,
             ),
             SizedBox(width: 10.0),
-            Text('Log in with Twitter',
+            Text('Sign in with Twitter',
                 style: TextStyle(fontWeight: FontWeight.w400)),
           ],
         ),
